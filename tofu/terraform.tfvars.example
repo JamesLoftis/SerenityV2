@@ -1,0 +1,9 @@
+# Example Terraform variables
+# Copy this file to terraform.tfvars and fill in your actual values
+
+# Your Google Sheet ID (from the URL: docs.google.com/spreadsheets/d/{SHEET_ID}/edit)
+sheet_id = "1xYourGoogleSheetIdFromTillerABC"
+
+# Google Service Account credentials (optional - can use environment variables instead)
+# gdrive_sa_email = "serenity-grafana@your-project.iam.gserviceaccount.com" 
+# gdrive_sa_private_key = "-----BEGIN PRIVATE KEY-----\nYOUR_KEY_HERE\n-----END PRIVATE KEY-----\n"

@@ -1,0 +1,39 @@
+# compose.yml
+services:
+  tofu:
+    image: ghcr.io/opentofu/opentofu:1.8.0
+    working_dir: /work
+    command: >
+      sh -c "
+      tofu init &&
+      tofu apply -auto-approve
+      "
+    volumes:
+      - ./tofu:/work
+      - ./out:/out
+    environment:
+      # OpenTofu variables for Google Sheets integration
+      - TF_VAR_sheet_id=${SHEET_ID}
+      - TF_VAR_gdrive_sa_email=${GDRIVE_SA_EMAIL}
+      - TF_VAR_gdrive_sa_private_key=${GDRIVE_SA_PRIVATE_KEY}
+
+  grafana:
+    image: grafana/grafana:11.3.0
+    depends_on:
+      - tofu
+    ports:
+      - "3000:3000"
+    environment:
+      # Install plugins at container start
+      - GF_INSTALL_PLUGINS=marcusolsson-googlesheets-datasource,yesoreyeram-infinity-datasource
+      # Enable anonymous view for kiosk screens (optional)
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      # Hide edit chrome on kiosks (optional)
+      - GF_USERS_DEFAULT_THEME=light
+    volumes:
+      - ./out/provisioning:/etc/grafana/provisioning:ro
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  grafana_data:
