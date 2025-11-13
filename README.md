@@ -160,11 +160,22 @@ For testing only, you can publish sheets as CSV:
 
 ## Dashboard Features
 
-The default dashboard includes:
+The **Serenity Financial Overview** provides comprehensive insights across 7 panels:
 
-- **Total Balance:** Sum of all account balances
-- **Daily Net Change:** Time series of daily financial changes  
-- **Recent Transactions:** Table of latest transactions
+### **Top Row - Key Metrics (4 panels)**
+- **Net Worth**: Current total with color-coded thresholds 
+- **This Month Spending**: Real-time spending alerts
+- **Cash & Checking**: Liquid account balances  
+- **Budget Status**: Monthly budget utilization percentage
+
+### **Second Row - Analysis (2 panels)**
+- **Net Worth Trend**: 90-day historical chart with statistics
+- **Spending by Category**: Interactive pie chart for current month
+
+### **Bottom Row - Detail (1 panel)**
+- **Recent Transactions**: Last 30 days with sorting and formatting
+
+**Data Sources**: Connects to standard Tiller sheets (`Balance History`, `Transactions`, `Accounts`, `Monthly Budget`, `Categories`) with 5-minute auto-refresh and proper currency formatting.
 
 ### Customizing Dashboards
 
@@ -233,10 +244,12 @@ Update the dashboard queries in `tofu/main.tf` to match your specific ranges.
 
 ### Custom Panels
 
-Add more panels to track:
-- Spending by category (pie chart)
-- Monthly budget vs actual (bar chart)
-- Account balance trends (time series)
+The enhanced dashboard already includes comprehensive panels like spending by category and account balances. Add more to track:
+
+- Investment performance and portfolio allocation
+- Income vs expense trends over time  
+- Cash flow projections and savings goals
+- Custom budget categories and alerts
 - Cash flow projections (stat panels)
 
 ### Environment Variables
